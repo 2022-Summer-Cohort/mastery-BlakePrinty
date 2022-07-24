@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>survivingCodingBootCamp.com</title>
+    <link rel="icon" href="/assets/icon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body>
+
+<header>
+    <div class="title-flex">
+        <h1 th:text="${hashtag.name}">Hashtag Name</h1>
+    </div>
+</header>
+
+<div class="posts-flex">
+    <div class="posts" th:each="hashtag: ${hashtag.posts}">
+        <a class="post-name" th:href="'/posts/' + ${hashtag.id}" th:text="${hashtag.title}"></a>
+    </div>
+</div>
+
+</body>
+</html>

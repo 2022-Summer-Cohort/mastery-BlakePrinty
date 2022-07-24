@@ -1,9 +1,6 @@
 package com.survivingcodingbootcamp.blog.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
@@ -32,6 +29,10 @@ public class Topic {
 
     public Collection<Post> getPosts() {
         return posts;
+    }
+
+    public void addPost(Post newPost) {
+        posts.add(newPost);
     }
 
     @Override

@@ -50,7 +50,7 @@ public class WebMvcLayerTest {
     @Test
     public void shouldReceiveOkAndViewOfPostTemplateFromSinglePostEndpoint() throws Exception {
         Topic testTopic = new Topic("Test Topic");
-        Post testPost = new Post("Test Post", testTopic, "Sample content.");
+        Post testPost = new Post("Test Post", "Blake", testTopic, "Sample content.");
         Optional<Post> testOptional = Optional.of(testPost);
         when(postRepo.findById(1l)).thenReturn(testOptional);
         mockMvc.perform(get("/posts/1"))
