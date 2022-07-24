@@ -28,6 +28,21 @@
                     Eligendi necessitatibus blanditiis officia, odio deleniti natus molestiae fugiat ex quod vel aliquam illum.
                 </p>
             </section>
+
+            <section class="hashtags">
+                <h3>Hashtags</h3>
+                <div th:each="hashtag: ${post.hashtags}">
+                    <a th:text="${hashtag.name}" th:href="'/hashtags/' + ${hashtag.id}" href="#"></a>
+                </div>
+            </section>
+
+            <section class="create-hashtag">
+                <form class="add-hashtag" th:action="'/posts/'+ ${post.id}" method="post">
+                    <label for="hashtag">Hashtag: </label>
+                    <input type="text" name="hashtag" id="hashtag">
+                    <input type="submit">
+                </form>
+            </section>
         </main>
     </div>
 

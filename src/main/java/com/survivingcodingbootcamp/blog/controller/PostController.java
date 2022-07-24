@@ -2,8 +2,10 @@ package com.survivingcodingbootcamp.blog.controller;
 
 import com.survivingcodingbootcamp.blog.model.Hashtag;
 import com.survivingcodingbootcamp.blog.model.Post;
+import com.survivingcodingbootcamp.blog.model.Topic;
 import com.survivingcodingbootcamp.blog.repository.HashtagRepository;
 import com.survivingcodingbootcamp.blog.repository.PostRepository;
+import com.survivingcodingbootcamp.blog.repository.TopicRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import java.util.Optional;
 public class PostController {
     private PostRepository postRepo;
     private HashtagRepository hashtagRepo;
+    private TopicRepository topicRepo;
 
     public PostController(PostRepository postRepo, HashtagRepository hashtagRepo) {
         this.postRepo = postRepo;
@@ -33,8 +36,12 @@ public class PostController {
         return "all-posts-template";
     }
 
-    @PostMapping("/{id}/addHashtag")
+    @PostMapping("/{id}")
     public String addHashtagToPost(@PathVariable Long id, @RequestParam String hashtag) {
+        if (hashtag.charAt(0) != '#') {
+            hashtag = '#' + hashtag;
+        }
+
         Post post = postRepo.findById(id).get();
         Optional<Hashtag> hashtagOptional = hashtagRepo.findByNameIgnoreCase(hashtag);
         if (hashtagOptional.isPresent()) {
